@@ -1,0 +1,29 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}Membres{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Les membres" texte="Les personnes qui font vivre l'association." fond="img/membres.jpg" position="right center" gauche=True leger=True %}
+
+<section class="py-5 bg-light">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+      {% for m in membres %}
+        <div class="col mb-5">
+          <div class="text-center">
+            {% if m.photo %}
+              <img class="img-fluid rounded-circle mb-4 px-4 avatar-photo" src="{{ m.photo.url }}" alt="{{ m.nom }}" loading="lazy">
+            {% else %}
+              <div class="avatar bg-primary bg-gradient text-white rounded-circle mb-4 mx-auto" aria-hidden="true">{{ m.nom|slice:":1" }}</div>
+            {% endif %}
+            <h5 class="fw-bolder">{{ m.nom }}</h5>
+            <div class="fst-italic text-muted mb-2">{{ m.role }}</div>
+            {% if m.bio %}<p class="small mb-0">{{ m.bio }}</p>{% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted">Aucun membre pour le moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

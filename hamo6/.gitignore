@@ -1,0 +1,17 @@
+# Environnement virtuel
+venv/
+env/
+ENV/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Base de données locale de développement
+db.sqlite3
+
+# Fichiers de configuration personnelle ou sensible
+.env
+
+# Dossier des fichiers statiques générés pour la production
+staticfiles/

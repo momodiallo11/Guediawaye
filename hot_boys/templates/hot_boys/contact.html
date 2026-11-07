@@ -1,0 +1,26 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Contact" texte="Une idée, une question, une info à partager ? Écrivez-nous." n=1 %}
+
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% for champ in form %}
+            <div class="mb-3">
+              <label class="form-label fw-semibold" for="{{ champ.id_for_label }}">{{ champ.label }}</label>
+              {{ champ }}
+              {% for erreur in champ.errors %}<div class="text-danger small mt-1">{{ erreur }}</div>{% endfor %}
+            </div>
+          {% endfor %}
+          <div class="d-grid"><button class="btn btn-primary btn-lg" type="submit">Envoyer le message</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

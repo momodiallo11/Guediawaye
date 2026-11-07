@@ -1,0 +1,254 @@
+/* Base : Bootstrap 5 (chargé depuis un CDN dans base.html).
+   Mise en page inspirée du template "Modern Business" de Start Bootstrap (licence MIT). */
+
+html, body { height: 100%; }
+
+/* Couleur principale : vert */
+:root {
+  --bs-primary: #0b6b3a;
+  --bs-primary-rgb: 11, 107, 58;
+  --bs-link-color: #0b6b3a;
+  --bs-link-color-rgb: 11, 107, 58;
+  --bs-link-hover-color: #084d2a;
+  --bs-link-hover-color-rgb: 8, 77, 42;
+}
+
+.btn-primary {
+  --bs-btn-bg: #0b6b3a;
+  --bs-btn-border-color: #0b6b3a;
+  --bs-btn-hover-bg: #084d2a;
+  --bs-btn-hover-border-color: #084d2a;
+  --bs-btn-active-bg: #084d2a;
+  --bs-btn-active-border-color: #084d2a;
+  --bs-btn-disabled-bg: #0b6b3a;
+  --bs-btn-disabled-border-color: #0b6b3a;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #0b6b3a;
+  --bs-btn-border-color: #0b6b3a;
+  --bs-btn-hover-bg: #0b6b3a;
+  --bs-btn-hover-border-color: #0b6b3a;
+  --bs-btn-active-bg: #0b6b3a;
+  --bs-btn-active-border-color: #0b6b3a;
+}
+
+/* Pastille d'icône */
+.feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5rem;
+}
+
+/* Images */
+.img-cover { width: 100%; height: 220px; object-fit: cover; object-position: center 20%; }
+.img-cover-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* Date des événements */
+.date-bloc {
+  width: 4rem;
+  padding: .6rem 0;
+  text-align: center;
+}
+
+/* Membres */
+.avatar, .avatar-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+.avatar-photo { padding: 0 !important; }
+
+/* Grand bloc d'icône (page À propos) */
+.bloc-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18rem;
+  font-size: 6rem;
+}
+
+/* En-tête avec photo de fond (pages intérieures) */
+.entete-image {
+  position: relative;
+  background-color: #212529;
+  background-size: cover;
+  background-position: center;
+}
+.entete-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .7));
+}
+.entete-image > .container { position: relative; }
+
+/* Même hauteur d'en-tête sur toutes les pages (accueil compris) */
+.entete-image,
+.entete-accueil {
+  display: flex;
+  align-items: center;
+  min-height: 24rem;
+}
+.entete-image > .container,
+.entete-accueil > .container {
+  width: 100%;
+}
+@media (max-width: 991.98px) {
+  .entete-image,
+  .entete-accueil { min-height: 18rem; }
+}
+
+/* En-tête "léger" : photo avec zone de texte déjà sombre (page Membres) */
+@media (min-width: 992px) {
+  .entete-leger::before {
+    background: linear-gradient(90deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .05));
+  }
+}
+
+/* Photos des membres : on garde le haut du visage */
+.avatar-photo { object-position: center top; }
+
+/* Page Événements */
+.evenement-carte { transition: transform .2s ease, box-shadow .2s ease; }
+.evenement-carte:hover { transform: translateY(-4px); box-shadow: 0 1rem 2rem rgba(0, 0, 0, .15) !important; }
+.badge-delai { background: rgba(11, 107, 58, .12); color: #0b6b3a; font-weight: 600; }
+
+/* ============================================================
+   Fond crème lumineux mélangé à du vert sauge clair
+   Pour changer de couleur, modifie seulement les variables ci-dessous.
+   ============================================================ */
+:root {
+  --fond-1: #fffdf6;                      /* crème très clair */
+  --fond-2: #fbf3df;                      /* crème */
+  --fond-3: #e4f0e1;                      /* vert sauge clair */
+  --halo-a: rgba(255, 255, 255, .95);     /* reflet blanc en haut à gauche */
+  --halo-b: rgba(208, 234, 214, .80);     /* reflet de couleur à droite */
+  --halo-c: rgba(255, 238, 200, .60);     /* reflet doré en bas à gauche */
+  --section-1: rgba(226, 238, 214, .70);  /* sections alternées (haut) */
+  --section-2: rgba(247, 238, 217, .70);  /* sections alternées (bas) */
+  --creme-clair: #fffdf8;                 /* fond des cartes */
+  --or: #c9a24a;                          /* liserés dorés */
+}
+
+html {
+  background-color: var(--fond-2);
+  background-image:
+    radial-gradient(1100px 520px at 12% -5%, var(--halo-a), rgba(255, 255, 255, 0) 65%),
+    radial-gradient(900px 560px at 100% 18%, var(--halo-b), rgba(255, 255, 255, 0) 65%),
+    radial-gradient(900px 600px at 0% 100%, var(--halo-c), rgba(255, 255, 255, 0) 65%),
+    linear-gradient(135deg, var(--fond-1) 0%, var(--fond-2) 45%, var(--fond-3) 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+body { background: transparent; }
+
+/* Sections alternées */
+.bg-light { background: linear-gradient(180deg, var(--section-1), var(--section-2)) !important; }
+.bg-white { background-color: var(--creme-clair) !important; }
+
+/* Cartes : blanc chaud, fin liseré doré, ombre douce */
+.card { --bs-card-bg: var(--creme-clair); }
+.card.border-0 {
+  border: 1px solid rgba(201, 162, 74, .28) !important;
+  box-shadow: 0 .75rem 1.75rem rgba(70, 90, 40, .10) !important;
+}
+
+/* Champs du formulaire */
+.form-control { background-color: var(--creme-clair); border-color: rgba(201, 162, 74, .45); }
+.form-control:focus { border-color: var(--or); box-shadow: 0 0 0 .25rem rgba(201, 162, 74, .25); }
+
+/* Petites touches dorées */
+.navbar { border-bottom: 2px solid var(--or); }
+footer { border-top: 2px solid var(--or); }
+
+/* ============================================================
+   Page d'accueil
+   ============================================================ */
+
+/* Petit titre au-dessus des grands titres */
+.surtitre {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--bs-primary);
+}
+.surtitre::before { content: ""; width: 2rem; height: 2px; background: var(--or); }
+.surtitre.justify-content-center::after { content: ""; width: 2rem; height: 2px; background: var(--or); }
+
+/* Cartes de raccourcis qui chevauchent l'en-tête */
+.rubriques { margin-top: -4.5rem; position: relative; z-index: 2; }
+.rubrique-carte { transition: transform .25s ease, box-shadow .25s ease; }
+.rubrique-carte:hover { transform: translateY(-6px); box-shadow: 0 1.25rem 2.25rem rgba(60, 80, 30, .18) !important; }
+.rubrique-icone {
+  display: flex; align-items: center; justify-content: center;
+  width: 3.6rem; height: 3.6rem; border-radius: 50%; font-size: 1.6rem;
+}
+
+/* Liste à puces avec coches */
+.liste-points li { display: flex; align-items: center; gap: .65rem; margin-bottom: .6rem; font-weight: 500; }
+.liste-points i { font-size: 1.15rem; }
+
+/* Collage de deux photos */
+.collage { position: relative; padding: 0 2.5rem 3rem 0; }
+.collage-grande {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: 1rem; box-shadow: 0 1.25rem 2.5rem rgba(60, 50, 20, .22);
+}
+.collage-petite {
+  position: absolute; right: 0; bottom: 0; width: 46%; aspect-ratio: 1; object-fit: cover;
+  border-radius: 1rem; border: 6px solid var(--creme-clair);
+  box-shadow: 0 1rem 2rem rgba(60, 50, 20, .25);
+}
+
+/* Actualités */
+.carte-lien { transition: transform .25s ease, box-shadow .25s ease; }
+.carte-lien:hover { transform: translateY(-4px); box-shadow: 0 1.25rem 2.25rem rgba(60, 80, 30, .16) !important; }
+.img-vedette { display: block; width: 100%; height: 280px; object-fit: cover; }
+.img-compacte { display: block; width: 100%; height: 100%; min-height: 130px; object-fit: cover; }
+.vignette-vide {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #0b6b3a, #17995a);
+  color: rgba(255, 255, 255, .85); font-size: 3rem;
+}
+.img-vedette.vignette-vide { font-size: 4.5rem; }
+
+/* Événements */
+.evenement-ligne { transition: transform .2s ease, box-shadow .2s ease; }
+.evenement-ligne:hover { transform: translateX(6px); }
+
+/* Mosaïque de photos */
+.mosaique { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 1rem; grid-auto-flow: dense; }
+.tuile { position: relative; display: block; overflow: hidden; border-radius: 1rem; box-shadow: 0 .75rem 1.5rem rgba(60, 50, 20, .15); }
+.tuile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.tuile:hover img { transform: scale(1.07); }
+.tuile .legende {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 1rem .8rem;
+  color: #fff; font-weight: 600;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .7));
+}
+.tuile-1 { grid-column: span 2; grid-row: span 2; }
+@media (min-width: 768px) {
+  .mosaique { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; }
+  .tuile-4, .tuile-5, .tuile-6 { grid-column: span 2; }
+}
+
+/* Équipe */
+.membre-mini .avatar,
+.membre-mini .avatar-photo { width: 120px; height: 120px; box-shadow: 0 .5rem 1.25rem rgba(60, 50, 20, .2); }
+.membre-mini .avatar { font-size: 2.8rem; }

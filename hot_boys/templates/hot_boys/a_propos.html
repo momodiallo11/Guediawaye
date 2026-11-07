@@ -1,0 +1,80 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}À propos{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Notre mission : faire vivre Hamo 6 ensemble." texte="Hamo 6 est un quartier de Guédiawaye. Ce site rassemble les habitants autour des nouvelles, des événements et des projets du quartier." n=0 bouton_texte="Lire notre histoire" bouton_lien="#histoire" %}
+
+<!-- Histoire -->
+<section class="py-5 bg-light" id="histoire">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 align-items-center">
+      <div class="col-lg-6">
+        <div class="bloc-icone bg-primary bg-gradient text-white rounded mb-5 mb-lg-0"><i class="bi bi-house-heart"></i></div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="fw-bolder">Notre histoire</h2>
+        <p class="lead fw-normal text-muted mb-3">Racontez ici comment est né le quartier et l'association : l'année de création, les premières actions, les personnes qui ont lancé le mouvement.</p>
+        <p class="lead fw-normal text-muted mb-0">Ajoutez un deuxième paragraphe sur ce qui a changé au fil des années et sur ce dont vous êtes le plus fiers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 align-items-center">
+      <div class="col-lg-6 order-first order-lg-last">
+        <div class="bloc-icone bg-dark text-white rounded mb-5 mb-lg-0"><i class="bi bi-bullseye"></i></div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="fw-bolder">Ce que nous faisons</h2>
+        <p class="lead fw-normal text-muted mb-0">Rapprocher les habitants, soutenir les jeunes, organiser des activités sportives et culturelles, et améliorer le cadre de vie de Hamo 6.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Valeurs -->
+<section class="py-5 bg-light">
+  <div class="container px-5 my-5">
+    <div class="text-center">
+      <h2 class="fw-bolder">Nos valeurs</h2>
+      <p class="lead fw-normal text-muted mb-5">Ce qui nous guide au quotidien.</p>
+    </div>
+    <div class="row gx-5 row-cols-1 row-cols-md-3">
+      <div class="col mb-5 mb-md-0 text-center">
+        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-people"></i></div>
+        <h3 class="h5">Solidarité</h3>
+        <p class="mb-0">Nous nous entraidons dans les moments heureux comme dans les moments difficiles.</p>
+      </div>
+      <div class="col mb-5 mb-md-0 text-center">
+        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-trophy"></i></div>
+        <h3 class="h5">Jeunesse</h3>
+        <p class="mb-0">Nous donnons aux jeunes des occasions d'apprendre, de jouer et de s'engager.</p>
+      </div>
+      <div class="col text-center">
+        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-heart"></i></div>
+        <h3 class="h5">Teranga</h3>
+        <p class="mb-0">Chacun est le bienvenu à Hamo 6, avec l'hospitalité qui nous ressemble.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Appel à l'action -->
+<section class="bg-primary bg-gradient py-5">
+  <div class="container px-5 my-5">
+    <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between text-white">
+      <div class="mb-4 mb-lg-0 text-center text-lg-start">
+        <h2 class="fw-bolder mb-1">Rejoignez-nous</h2>
+        <div class="lead">Vous voulez participer ou proposer une idée ?</div>
+      </div>
+      <div>
+        <a class="btn btn-light btn-lg px-4 me-2" href="{% url 'contact' %}">Nous contacter</a>
+        <a class="btn btn-outline-light btn-lg px-4" href="{% url 'membres' %}">Les membres</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

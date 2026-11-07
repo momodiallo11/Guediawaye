@@ -1,0 +1,19 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}{{ actualite.titre }}{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre=actualite.titre texte=actualite.date_publication|date:"d F Y" image=actualite.image n=1 %}
+
+<section class="py-5">
+  <div class="container px-5 my-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8">
+        <article>
+          <div class="fs-5 mb-5">{{ actualite.contenu|linebreaks }}</div>
+          <a class="btn btn-outline-primary" href="{% url 'actualites' %}"><i class="bi bi-arrow-left"></i> Retour aux actualités</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

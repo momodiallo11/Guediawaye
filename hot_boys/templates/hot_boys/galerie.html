@@ -1,0 +1,25 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}Galerie{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Galerie" texte="La vie du quartier en images." n=0 %}
+
+<section class="pt-5 pb-5">
+  <div class="container px-5 mt-4 mb-5">
+    <div class="row gx-4 gy-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
+      {% for p in photos %}
+        <div class="col">
+          <div class="card border-0 shadow h-100">
+            <a href="{{ p.image.url }}" target="_blank" rel="noopener">
+              <img class="card-img-top img-cover" src="{{ p.image.url }}" alt="{{ p.titre|default:'Photo du quartier' }}" loading="lazy">
+            </a>
+            {% if p.titre %}<div class="card-body py-3"><div class="fw-bold small">{{ p.titre }}</div></div>{% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted">Aucune photo pour le moment.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}Événements{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Événements" texte="Ce qui est prévu à Hamo 6." fond="img/evenements.jpg" position="center 40%" %}
+
+<!-- À venir -->
+<section class="py-5 bg-light">
+  <div class="container-fluid px-4 px-lg-5 my-4">
+
+    <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+      <div>
+        <h2 class="fw-bolder mb-1">À venir</h2>
+        <p class="text-muted mb-0">Notez les dates dans votre agenda.</p>
+      </div>
+      {% if a_venir %}<span class="badge badge-delai fs-6 rounded-pill px-3 py-2">{{ a_venir|length }} événement{{ a_venir|length|pluralize }}</span>{% endif %}
+    </div>
+
+    <div class="row g-4">
+      {% for e in a_venir %}
+
+        {% if forloop.first %}
+        <!-- Prochain événement (grande carte sur toute la largeur) -->
+        <div class="col-12">
+          <article class="card border-0 shadow overflow-hidden evenement-carte">
+            <div class="row g-0">
+              <div class="col-md-3 bg-primary bg-gradient text-white d-flex flex-column align-items-center justify-content-center text-center p-4">
+                <div class="small text-uppercase opacity-75">{{ e.date|date:"l" }}</div>
+                <div class="display-1 fw-bolder lh-1">{{ e.date|date:"d" }}</div>
+                <div class="fs-4 text-uppercase">{{ e.date|date:"F" }}</div>
+                <div class="opacity-75">{{ e.date|date:"Y" }}</div>
+              </div>
+              <div class="col-md-9">
+                <div class="card-body p-4 p-lg-5">
+                  <span class="badge bg-warning text-dark mb-3">Prochain événement</span>
+                  <h3 class="display-6 fw-bolder mb-3">{{ e.titre }}</h3>
+                  <div class="d-flex flex-wrap gap-4 text-muted mb-3">
+                    <span><i class="bi bi-clock me-1"></i>{{ e.date|date:"H\hi" }}</span>
+                    <span><i class="bi bi-geo-alt me-1"></i>{{ e.lieu }}</span>
+                    <span class="badge badge-delai rounded-pill align-self-center">Dans {{ e.date|timeuntil }}</span>
+                  </div>
+                  {% if e.description %}<p class="fs-5 mb-0">{{ e.description }}</p>{% endif %}
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        {% else %}
+        <!-- Autres événements -->
+        <div class="col-md-6 col-xl-4">
+          <article class="card border-0 shadow h-100 evenement-carte">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex align-items-center mb-3">
+                <div class="date-bloc bg-primary bg-gradient text-white rounded-3 me-3 flex-shrink-0">
+                  <div class="fs-4 fw-bold lh-1">{{ e.date|date:"d" }}</div>
+                  <div class="small text-uppercase">{{ e.date|date:"M" }}</div>
+                </div>
+                <div>
+                  <div class="small text-uppercase text-muted">{{ e.date|date:"l" }}</div>
+                  <div class="fw-semibold">{{ e.date|date:"d F Y" }}</div>
+                </div>
+              </div>
+              <h3 class="h4 fw-bolder mb-3">{{ e.titre }}</h3>
+              <div class="text-muted mb-3">
+                <div class="mb-1"><i class="bi bi-clock me-2"></i>{{ e.date|date:"H\hi" }}</div>
+                <div><i class="bi bi-geo-alt me-2"></i>{{ e.lieu }}</div>
+              </div>
+              {% if e.description %}<p class="mb-3">{{ e.description|truncatewords:25 }}</p>{% endif %}
+              <div class="mt-auto pt-2">
+                <span class="badge badge-delai rounded-pill">Dans {{ e.date|timeuntil }}</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        {% endif %}
+
+      {% empty %}
+        <div class="col-12 text-center py-5">
+          <i class="bi bi-calendar-x display-4 text-muted"></i>
+          <p class="text-muted mt-3 mb-0">Aucun événement prévu pour le moment.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if passes %}
+<!-- Déjà passés -->
+<section class="py-5">
+  <div class="container-fluid px-4 px-lg-5 my-4">
+    <h2 class="fw-bolder mb-4">Déjà passés</h2>
+    <div class="row g-3">
+      {% for e in passes %}
+        <div class="col-md-6 col-xl-4">
+          <div class="d-flex align-items-center p-3 border rounded-3 bg-white h-100">
+            <div class="date-bloc bg-secondary bg-gradient text-white rounded-3 me-3 flex-shrink-0">
+              <div class="fs-5 fw-bold lh-1">{{ e.date|date:"d" }}</div>
+              <div class="small text-uppercase">{{ e.date|date:"M" }}</div>
+            </div>
+            <div>
+              <div class="fw-bold">{{ e.titre }}</div>
+              <div class="small text-muted"><i class="bi bi-geo-alt"></i> {{ e.lieu }} &middot; {{ e.date|date:"Y" }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

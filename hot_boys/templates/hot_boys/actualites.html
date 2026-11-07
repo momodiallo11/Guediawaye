@@ -1,0 +1,32 @@
+{% extends "hot_boys/base.html" %}
+{% block title %}Actualités{% endblock %}
+
+{% block content %}
+{% include "hot_boys/_entete.html" with titre="Actualités" texte="Les nouvelles de Hamo 6." fond="img/actualites.jpg" position="center 35%" %}
+
+<section class="pt-5 pb-5">
+  <div class="container px-5 mt-4 mb-5">
+    <div class="row gx-5">
+      {% for a in actualites %}
+        <div class="col-lg-4 mb-5">
+          <div class="card h-100 shadow border-0">
+            {% if a.image %}
+              <img class="card-img-top img-cover" src="{{ a.image.url }}" alt="{{ a.titre }}" loading="lazy">
+            {% endif %}
+            <div class="card-body p-4">
+              <div class="badge bg-primary bg-gradient rounded-pill mb-2">Actualité</div>
+              <a class="text-decoration-none link-dark stretched-link" href="{% url 'actualite_detail' a.pk %}"><h5 class="card-title mb-3">{{ a.titre }}</h5></a>
+              <p class="card-text mb-0">{{ a.contenu|truncatewords:30 }}</p>
+            </div>
+            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+              <div class="small text-muted">{{ a.date_publication|date:"d F Y" }}</div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted">Aucune actualité publiée.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

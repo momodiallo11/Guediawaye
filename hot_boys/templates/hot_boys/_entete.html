@@ -1,0 +1,15 @@
+{% load entete static %}
+{% photo_entete n|default:0 as photo %}
+<header class="entete-image{% if leger %} entete-leger{% endif %} text-white"{% if fond %} style="background-image: url('{% static fond %}'){% if position %}; background-position: {{ position }}{% endif %}"{% elif image %} style="background-image: url('{{ image.url }}')"{% elif photo %} style="background-image: url('{{ photo.image.url }}')"{% endif %}>
+  <div class="container px-5">
+    <div class="row {% if gauche %}justify-content-start{% else %}justify-content-center{% endif %}">
+      <div class="{% if gauche %}col-lg-5{% else %}col-lg-9 col-xxl-8{% endif %}">
+        <div class="py-5 my-4 {% if gauche %}text-center text-lg-start{% else %}text-center{% endif %}">
+          <h1 class="display-5 fw-bolder mb-3">{{ titre }}</h1>
+          {% if texte %}<p class="lead fw-normal mb-0">{{ texte }}</p>{% endif %}
+          {% if bouton_lien %}<a class="btn btn-primary btn-lg mt-4" href="{{ bouton_lien }}">{{ bouton_texte }}</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
